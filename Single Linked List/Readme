@@ -1,0 +1,129 @@
+# Singly Linked List Implementation in C
+
+A complete implementation of a singly linked list data structure in C, providing essential operations for list manipulation and management.
+
+## Features
+
+- **Dynamic Memory Management**: Automatic allocation and deallocation of nodes
+- **Comprehensive Operations**: Insert, delete, search, and utility functions
+- **Flexible Insertion**: Add elements at head, tail, or any specific position
+- **Memory Safe**: Proper cleanup and memory management
+- **Well Tested**: Includes test suite for verification
+
+## File Structure
+
+- `header.h` - Header file containing structure definitions and function declarations
+- `slist_spec.c` - Implementation of all linked list operations
+- `main.c` - Test suite demonstrating functionality
+
+## Data Structures
+
+### List Structure
+```c
+typedef struct _slist_ {
+    Node *head;     // Pointer to first node
+    Node *tail;     // Pointer to last node
+    int32_t length; // Number of elements in list
+} List;
+```
+
+### Node Structure
+```c
+typedef struct _node_ {
+    int32_t data;   // Data stored in node
+    Node *next;     // Pointer to next node
+} Node;
+```
+
+## Available Operations
+
+### Core Functions
+- `slist_new()` - Create a new empty list
+- `slist_free(List*)` - Free all memory used by the list
+- `slist_length(const List*)` - Get the number of elements in the list
+
+### Insertion Operations
+- `slist_add_head(List*, int32_t)` - Add element at the beginning
+- `slist_add_tail(List*, int32_t)` - Add element at the end
+- `slist_add_at_position(List*, int32_t, int32_t)` - Add element at specific position
+
+### Deletion Operations
+- `delete_head(List*)` - Remove first element
+- `delete_tail(List*)` - Remove last element
+- `delete_specific_element(List*, int32_t)` - Remove element with specific value
+
+### Utility Functions
+- `slist_lookup(const List*, int32_t)` - Search for an element in the list
+
+## Usage Example
+
+```c
+#include "header.h"
+
+int main() {
+    // Create a new list
+    List *list = slist_new();
+    
+    // Add elements
+    slist_add_head(list, 10);
+    slist_add_tail(list, 20);
+    slist_add_at_position(list, 15, 1);
+    
+    // Check if element exists
+    if (slist_lookup(list, 15)) {
+        printf("Element 15 found in list\n");
+    }
+    
+    // Get list length
+    printf("List length: %d\n", slist_length(list));
+    
+    // Clean up
+    slist_free(list);
+    
+    return 0;
+}
+```
+
+## Compilation
+
+To compile the project:
+
+```bash
+gcc -o slist main.c slist_spec.c
+```
+
+To run the tests:
+
+```bash
+./slist
+```
+
+## Time Complexity
+
+| Operation | Time Complexity |
+|-----------|----------------|
+| Insert at head | O(1) |
+| Insert at tail | O(1) |
+| Insert at position | O(n) |
+| Delete head | O(1) |
+| Delete tail | O(n) |
+| Delete specific | O(n) |
+| Search | O(n) |
+| Length | O(1) |
+
+## Memory Management
+
+The implementation handles memory management automatically:
+- Nodes are allocated dynamically using `malloc()`
+- Memory is properly freed using `slist_free()`
+- No memory leaks when used correctly
+
+## Requirements
+
+- C compiler (GCC recommended)
+- Standard C library
+- POSIX-compliant system (for standard headers)
+
+## License
+
+This project is open source and available under standard terms.
