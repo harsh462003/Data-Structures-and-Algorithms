@@ -1,40 +1,34 @@
-# 🔄 Queue Implementation in C
+# Queue Implementation in C
 
-A simple **circular queue** (FIFO - First In, First Out) implementation in C that stores integers.
+A simple circular queue (FIFO - First In, First Out) implementation in C that stores integers.
 
----
+## About
 
-## 📖 What is this?
+This is a queue data structure that works like a line at a store - the first person in line is the first person served. It uses a circular buffer to efficiently reuse space.
 
-This is a **queue data structure** that works like a line at a store - the first person in line is the first person served. It uses a **circular buffer** to efficiently reuse space.
+## Contents
 
-```
-     ADD →  [10][20][30][40]  → REMOVE
-            ↑               ↑
-          tail            head
-```
+This implementation includes:
+- **Queue Operations**: Add, Remove, Check full/empty status
+- **Circular Buffer**: Efficient memory usage with wraparound
+- **Error Handling**: Clear status codes for all operations
+- **Comprehensive Testing**: Full test suite included
 
----
+## Files
 
-## 📁 Files
+- `header.h` - Function declarations and data structures
+- `spec.c` - Implementation of all queue functions  
+- `main.c` - Test cases and examples
 
-| File | Purpose |
-|------|---------|
-| `header.h` | Function declarations and data structures |
-| `spec.c` | Implementation of all queue functions |
-| `main.c` | Test cases and examples |
+## Usage
 
----
-
-## 🚀 Quick Start
-
-### Compile and Run
+To compile and run:
 ```bash
-gcc main.c spec.c -o queue_program
+gcc -o queue_program main.c spec.c
 ./queue_program
 ```
 
-### Basic Usage
+Basic usage example:
 ```c
 #include "header.h"
 
@@ -54,131 +48,63 @@ int main() {
 }
 ```
 
----
+## Functions
 
-## 🛠️ Functions
+**queue_new(size)** - Creates a new queue that can hold specified number of items
 
-### `queue_new(size)`
-Creates a new queue that can hold `size` numbers
-```c
-queue* my_queue = queue_new(10);  // Queue for 10 items
-```
+**queue_add(queue, data, result)** - Adds a number to the back of the queue
 
-### `queue_add(queue, data, result)`
-Adds a number to the back of the queue
-```c
-queue_add(my_queue, 42, &result);
-if (result.status == QUEUE_OK) {
-    printf("Added successfully!\n");
-}
-```
+**queue_remove(queue, result)** - Removes and returns the front number
 
-### `queue_remove(queue, result)`
-Removes and returns the front number
-```c
-queue_remove(my_queue, &result);
-if (result.status == QUEUE_OK) {
-    printf("Removed: %d\n", result.data);
-}
-```
+**queue_empty(queue)** - Returns 1 if queue is empty, 0 otherwise
 
-### `queue_empty(queue)` / `queue_full(queue)`
-Check queue status
-```c
-if (queue_empty(my_queue)) {
-    printf("Queue is empty\n");
-}
-if (queue_full(my_queue)) {
-    printf("Queue is full\n");
-}
-```
+**queue_full(queue)** - Returns 1 if queue is full, 0 otherwise
 
----
+## Status Codes
 
-## 📊 Status Codes
+**QUEUE_OK (1)** - Operation successful
 
-| Code | Meaning | When it happens |
-|------|---------|-----------------|
-| `QUEUE_OK` (1) | ✅ Success | Operation completed normally |
-| `QUEUE_FULL` (2) | ❌ Queue full | Tried to add to full queue |
-| `QUEUE_EMPTY` (4) | ❌ Queue empty | Tried to remove from empty queue |
+**QUEUE_FULL (2)** - Cannot add, queue is at maximum capacity
 
----
+**QUEUE_EMPTY (4)** - Cannot remove, queue has no items
 
-## 💡 Example Walkthrough
+## How It Works
 
-```c
-queue* q = queue_new(3);           // Create queue: [ ][ ][ ]
-queueresult result;
-
-queue_add(q, 10, &result);         // Add 10:    [10][ ][ ]
-queue_add(q, 20, &result);         // Add 20:    [10][20][ ]
-queue_add(q, 30, &result);         // Add 30:    [10][20][30] (FULL!)
-
-queue_remove(q, &result);          // Remove 10: [ ][20][30]
-// result.data = 10
-
-queue_add(q, 40, &result);         // Add 40:    [40][20][30] (circular!)
-queue_remove(q, &result);          // Remove 20: [40][ ][30]
-// result.data = 20
-```
-
----
-
-## 🔧 How Circular Queue Works
-
-The queue uses **head** and **tail** pointers that wrap around:
+The queue uses head and tail pointers that wrap around in a circular fashion:
 
 ```
-Initial:     [_][_][_][_]
-             ↑
-           head/tail
+Add items:    [10][20][30][ ]
+              ↑          ↑
+            head       tail
 
-Add 10,20:   [10][20][_][_]
-             ↑      ↑
-           head   tail
+Remove item:  [ ][20][30][ ]
+                 ↑      ↑
+               head   tail
 
-Remove 10:   [_][20][_][_]
-                ↑   ↑
-              head tail
-
-Add 30,40:   [_][20][30][40]
-                ↑        ↑
-              head     tail
-
-Add 50:      [50][20][30][40]  ← tail wraps around!
-                ↑   ↑
-              head tail
+Add item:     [40][20][30][ ]  ← tail wraps around
+                 ↑         ↑
+               head      tail
 ```
 
----
+## Requirements
 
-## ✅ Testing
+- C compiler (GCC recommended)
+- Standard C library
 
-The program includes comprehensive tests:
-- ✅ Create empty queue
-- ✅ Add items until full
-- ✅ Remove items in FIFO order
-- ✅ Handle full/empty conditions
-- ✅ Test circular wrapping
+## Testing
 
-Run the program - if you see **"All assertions passed"**, everything works correctly!
+The program includes comprehensive tests that verify:
+- Queue creation and initialization
+- Adding items until full
+- Removing items in FIFO order
+- Proper handling of full and empty conditions
+- Circular buffer wraparound functionality
 
----
+Run the program and look for "All assertions passed" to confirm everything works correctly.
 
-## 🎯 Key Features
+## Technical Details
 
-- **Memory efficient** - Fixed size, no dynamic resizing
-- **Circular buffer** - Reuses space efficiently  
-- **FIFO ordering** - First in, first out
-- **Error handling** - Clear status codes for all operations
-- **Robust testing** - Comprehensive test suite included
-
----
-
-## 🔍 Technical Details
-
-- **Max capacity**: 32 items (configurable via `MAX_QUEUE_LEN`)
-- **Data type**: 32-bit signed integers
-- **Memory**: Dynamically allocated queue structure
-- **Algorithm**: Circular buffer with head/tail pointers
+- Maximum capacity: 32 items (configurable via MAX_QUEUE_LEN)
+- Data type: 32-bit signed integers
+- Memory: Dynamically allocated queue structure
+- Algorithm: Circular buffer with head/tail pointers
