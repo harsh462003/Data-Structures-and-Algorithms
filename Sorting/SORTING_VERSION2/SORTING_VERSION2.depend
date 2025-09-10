@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1757477628 source:d:\251100610023\dsa lab\sorting_version2\main.c
+	<stdio.h>
+	<assert.h>
+	<string.h>
+	"header.h"
+
+1757477604 d:\251100610023\dsa lab\sorting_version2\header.h
+	<stdint.h>
+	<stddef.h>
+
