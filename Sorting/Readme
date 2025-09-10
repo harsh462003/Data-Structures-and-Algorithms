@@ -1,1 +1,136 @@
+# Sorting Algorithms in C
 
+A collection of common sorting algorithms implemented in C. This repository contains two versions with different features.
+
+## What is this?
+
+This project implements 5 different sorting algorithms that arrange numbers from smallest to largest:
+
+1. **Selection Sort** - Finds the smallest number and puts it at the beginning
+2. **Bubble Sort** - Compares adjacent numbers and swaps them if needed
+3. **Insertion Sort** - Takes each number and puts it in the right place
+4. **Merge Sort** - Divides the array and merges sorted parts
+5. **Quick Sort** - Picks a pivot and arranges numbers around it
+
+## Folder Structure
+
+```
+Sorting/
+├── README.md
+├── Version1/
+│   ├── header.h
+│   ├── main.c
+│   └── spec.c
+└── Version2/
+    ├── header.h
+    ├── main.c
+    ├── spec.c
+    └── SORTING_VERSION2.cbp
+```
+
+## Differences Between Versions
+
+### Version 1
+- Shows step-by-step progress for Selection Sort, Bubble Sort, and Insertion Sort
+- Displays the array after each pass to see how sorting happens
+- Good for learning and understanding how algorithms work
+
+### Version 2
+- Cleaner output - just shows the final sorted result
+- Includes CodeBlocks project file (.cbp)
+- Better for performance testing and production use
+
+## Files
+
+- `header.h` - Contains function declarations for all sorting algorithms
+- `spec.c` - Contains the actual implementation of all sorting functions
+- `main.c` - Contains test cases and demonstrates all algorithms
+- `SORTING_VERSION2.cbp` - CodeBlocks project file (Version 2 only)
+
+## How to use
+
+### Compile and run
+```bash
+# For either version
+gcc main.c spec.c -o sorting_program
+./sorting_program
+```
+
+### Using the sorting functions
+
+```c
+#include "header.h"
+
+int main() {
+    int numbers[] = {64, 34, 25, 12, 22, 11, 90};
+    int size = 7;
+    
+    // Use any sorting algorithm
+    selection_sort(numbers, size);
+    // OR bubble_sort(numbers, size);
+    // OR insertion_sort(numbers, size);
+    // OR merge_sort(numbers, 0, size - 1);
+    // OR quick_sort(numbers, 0, size - 1);
+    
+    return 0;
+}
+```
+
+## Algorithm Descriptions
+
+### Selection Sort
+- **How it works:** Finds the smallest number and moves it to the front, then repeats
+- **Time:** O(n²) - slow but simple
+- **Good for:** Small arrays, learning
+
+### Bubble Sort
+- **How it works:** Compares neighbors and swaps if wrong order
+- **Time:** O(n²) - slow but easy to understand
+- **Good for:** Learning, very small arrays
+
+### Insertion Sort
+- **How it works:** Takes each number and inserts it in the right place
+- **Time:** O(n²) average, O(n) if already sorted
+- **Good for:** Small arrays, nearly sorted data
+
+### Merge Sort
+- **How it works:** Splits array in half, sorts each half, then merges
+- **Time:** O(n log n) - fast and consistent
+- **Good for:** Large arrays, stable sorting needed
+
+### Quick Sort
+- **How it works:** Picks a pivot, puts smaller numbers left, larger right
+- **Time:** O(n log n) average, O(n²) worst case
+- **Good for:** Large arrays, general purpose
+
+## Example Output
+
+### Version 1 (with steps)
+```
+Original for Selection Sort: 64 34 25 12 22 11 90
+Pass 1: 11 34 25 12 22 64 90
+Pass 2: 11 12 25 34 22 64 90
+...
+```
+
+### Version 2 (final results)
+```
+Selection Sort: 11 12 22 25 34 64 90
+Bubble Sort: 11 12 22 25 34 64 90
+Insertion Sort: 11 12 22 25 34 64 90
+Merge Sort: 11 12 22 25 34 64 90
+Quick Sort: 11 12 22 25 34 64 90
+```
+
+## Testing
+
+Both versions include automatic tests that:
+- Test all 5 sorting algorithms
+- Check that arrays are properly sorted
+- Use the same test data for fair comparison
+- Print "All sorting tests passed!" if everything works
+
+## Which Version to Use?
+
+- **Choose Version 1** if you want to learn how algorithms work step by step
+- **Choose Version 2** if you want clean output and a CodeBlocks project setup
