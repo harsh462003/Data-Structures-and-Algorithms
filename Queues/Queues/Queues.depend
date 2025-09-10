@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1757476983 source:d:\251100610023\dsa lab\queues\spec.c
+	<assert.h>
+	<stddef.h>
+	<stdlib.h>
+	"header.h"
+
+1757455841 d:\251100610023\dsa lab\queues\header.h
+	<stdint.h>
+
+1757477153 source:d:\251100610023\dsa lab\queues\main.c
+	<stdio.h>
+	<assert.h>
+	"header.h"
+
