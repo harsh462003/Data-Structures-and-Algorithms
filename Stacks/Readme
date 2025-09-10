@@ -1,1 +1,92 @@
+# Stack Implementation in C
 
+A simple stack data structure implementation in C that stores floating-point numbers.
+
+## What is this?
+
+This is a basic stack implementation that can store up to 32 floating-point numbers. A stack works like a pile of plates - you can only add or remove items from the top.
+
+## Files
+
+- `header.h` - Contains all the function declarations and data structures
+- `spec.c` - Contains the actual implementation of all stack functions
+- `main.c` - Contains test cases to make sure everything works correctly
+
+## How to use
+
+### Compile the code
+```bash
+gcc main.c spec.c -o stack_program
+./stack_program
+```
+
+### Basic operations
+
+**Create a new stack:**
+```c
+stack my_stack = stacknew(10);  // Creates stack that can hold 10 items
+```
+
+**Push (add) a number:**
+```c
+stackresult result;
+stack_push(&my_stack, 5.5, &result);
+```
+
+**Pop (remove) a number:**
+```c
+stackresult result;
+stack_pop(&my_stack, &result);
+// The removed number is now in result.data
+```
+
+**Peek (look at top without removing):**
+```c
+stackresult result;
+stack_peek(&my_stack, &result);
+// The top number is in result.data, but still on the stack
+```
+
+**Check if stack is empty or full:**
+```c
+if (stack_empty(&my_stack)) {
+    printf("Stack is empty\n");
+}
+
+if (stack_full(&my_stack)) {
+    printf("Stack is full\n");
+}
+```
+
+## Status codes
+
+The stack operations return status codes to tell you what happened:
+
+- `STACK_OK` (1) - Operation was successful
+- `STACK_FULL` (2) - Tried to push to a full stack
+- `STACK_EMPTY` (4) - Tried to pop or peek from an empty stack
+
+## Example
+
+```c
+stack my_stack = stacknew(3);  // Stack can hold 3 numbers
+stackresult result;
+
+stack_push(&my_stack, 10.5, &result);  // Push 10.5
+stack_push(&my_stack, 20.7, &result);  // Push 20.7
+stack_push(&my_stack, 30.2, &result);  // Push 30.2
+
+stack_pop(&my_stack, &result);  // result.data will be 30.2
+stack_pop(&my_stack, &result);  // result.data will be 20.7
+stack_pop(&my_stack, &result);  // result.data will be 10.5
+```
+
+## Testing
+
+Run the program to see the tests pass. The tests check:
+- Creating empty stack
+- Pushing and popping numbers
+- Checking full and empty conditions
+- Peeking at the top element
+
+If the program runs without errors, all tests passed!
