@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1756876209 source:d:\251100610023\dsa lab\stacks\main.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	"header.h"
+
+1756875999 d:\251100610023\dsa lab\stacks\header.h
+	<stdint.h>
+
+1756876604 source:d:\251100610023\dsa lab\stacks\spec.c
+	<stdint.h>
+	"header.h"
+	<assert.h>
+	<stddef.h>
+
